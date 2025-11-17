@@ -1,4 +1,4 @@
-import express from "express"; 
+import express from "express";
 import cors from "cors";
 import fileUpload from "express-fileupload";
 import { dbConnection } from "./database/dbConnection.js";
@@ -6,15 +6,15 @@ import cookieParser from "cookie-parser";
 import messageRouter from "./router/messageRouter.js";
 import { errorMiddleware } from "./middlewares/errorMiddleware.js";
 import userRouter from "./router/userRouter.js"; // ✅ FIXED import
-import appointmentRouter from "./router/appointmentRouter.js"; 
+import appointmentRouter from "./router/appointmentRouter.js";
 const app = express();
- 
+
 // Connect to database
 dbConnection();
 
 const allowedOrigins = [
-  "http://localhost:5173",  // local frontend
-  "http://localhost:5174",  // deployed frontend
+  process.env.FRONTEND_URL,  // local frontend
+  process.env.DASHBOARD_URL  // deployed frontend
 ];
 // Middleware setup
 app.use(
